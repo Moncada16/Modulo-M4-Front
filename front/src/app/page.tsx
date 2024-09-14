@@ -16,6 +16,8 @@ const Home: React.FC = () => {
   const fetchProducts = async () => {
       try {
           const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/products" || 'http://localhost:3000/products');
+          console.log(process.env.NEX_PUBLIC_API_URL, "Hoolaa");
+          
           if (!response.ok) {
           throw new Error('Error al obtener los productos');
       }
