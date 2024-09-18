@@ -9,14 +9,13 @@ const Home: React.FC = () => {
     const [products, setProducts] = useState<Product[]>(typeof window !== "undefined" 
       ? JSON.parse(localStorage.getItem("products") || "[]" ) : []);
     const [error, setError] = useState<string | null>(null);
-
+    // typeof window !== "undefined" 
+    //   ? JSON.parse(localStorage.getItem("products") || "[]" ) : []);
     
-  
     // Función para obtener los productos desde la API
   const fetchProducts = async () => {
       try {
-          const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/products" || 'http://localhost:3000/products');
-          console.log(process.env.NEX_PUBLIC_API_URL, "Hoolaa");
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
           
           if (!response.ok) {
           throw new Error('Error al obtener los productos');
@@ -25,7 +24,7 @@ const Home: React.FC = () => {
       setProducts(data);
       } catch (error) {
           setError('No se pudieron cargar los productos. Inténtalo de nuevo más tarde.');
-          console.error('Error al obtener los productos:', error);
+          
       }
   };
   
